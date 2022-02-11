@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "252289457852",
+    "project_id": "chat-fire-cada0",
+    "storage_bucket": "chat-fire-cada0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:252289457852:android:7c2484d272c0ffc115bab9",
+        "android_client_info": {
+          "package_name": "com.example.firebase_chat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "252289457852-bklf67vnpf6nrf3qkekmodh4m35ro4a7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBT9fYTRWlJGPQeoOxaY8liliiDqc6d7LY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "252289457852-bklf67vnpf6nrf3qkekmodh4m35ro4a7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

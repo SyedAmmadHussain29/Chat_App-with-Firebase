@@ -41,7 +41,24 @@ class _ChatScreenState extends State<ChatScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.userMap!['name'] ?? ''),
+        title: StreamBuilder<DocumentSnapshot>(
+            stream: _firebase
+                .collection('users')
+                .doc(widget.userMap!['uid'])
+                .snapshots(),
+            builder: (context, snapchot) {
+              if (snapchot.data != null) {
+                return Container(
+                  child: Column(
+                    children: [
+                      Text(widget.userMap!['name']),
+                      Text(snapchot.data!['status']),
+                    ],
+                  ),
+                );
+              }
+              return Text('Unacailable');
+            }),
       ),
       body: SingleChildScrollView(
         child: Column(

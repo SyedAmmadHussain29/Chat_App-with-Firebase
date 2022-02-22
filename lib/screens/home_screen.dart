@@ -2,8 +2,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_chat/methods.dart';
 import 'package:firebase_chat/screens/chat_screen.dart';
+import 'package:firebase_chat/widgets/auth.dart';
 // import 'package:firebase_chat/widgets/auth.dart';
 import 'package:firebase_chat/widgets/custom_feild.dart';
+// import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
@@ -13,7 +15,7 @@ class Home extends StatefulWidget {
   _HomeState createState() => _HomeState();
 }
 
-class _HomeState extends State<Home> {
+class _HomeState extends State<Home> with WidgetsBindingObserver {
   String chatRoom(String user1, String user2) {
     if (user1[0].toLowerCase().codeUnits[0] >
         user2.toLowerCase().codeUnits[0]) {
@@ -26,9 +28,10 @@ class _HomeState extends State<Home> {
   Map<dynamic, dynamic>? userMap = {};
   bool isloading = false;
   final TextEditingController _search = TextEditingController();
+  FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
+  FirebaseAuth _auth = FirebaseAuth.instance;
 
   void onSearch() async {
-    FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
     setState(() {
       isloading = true;
     });
@@ -46,8 +49,6 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    FirebaseAuth _auth = FirebaseAuth.instance;
-
     final Size s = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
@@ -121,5 +122,33 @@ class _HomeState extends State<Home> {
               ],
             ),
     );
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    WidgetsBinding.instance?.addObserver(this);
+    setstatus('Online');
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed) {
+      setstatus('Online');
+    } else {
+      setstatus('Offline');
+    }
+
+    super.didChangeAppLifecycleState(state);
+  }
+
+  void setstatus(String status) async {
+    await firebaseFirestore
+        .collection('users')
+        .doc(_auth.currentUser!.uid)
+        .update({
+      'status': status,
+    });
   }
 }

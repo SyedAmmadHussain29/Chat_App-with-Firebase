@@ -1,4 +1,4 @@
-import 'dart:ffi';
+// ignore_for_file: avoid_print
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -16,7 +16,7 @@ class ChatScreen extends StatefulWidget {
 class _ChatScreenState extends State<ChatScreen> {
   final FirebaseFirestore _firebase = FirebaseFirestore.instance;
   final TextEditingController _message = TextEditingController();
-  FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
     final Size s = MediaQuery.of(context).size;
@@ -48,16 +48,15 @@ class _ChatScreenState extends State<ChatScreen> {
                 .snapshots(),
             builder: (context, snapchot) {
               if (snapchot.data != null) {
-                return Container(
-                  child: Column(
-                    children: [
-                      Text(widget.userMap!['name']),
-                      Text(snapchot.data!['status']),
-                    ],
-                  ),
+                return Column(
+                  children: [
+                    Text(widget.userMap!['name']),
+                    Text(snapchot.data!['status']),
+                  ],
                 );
+              } else {
+                return const Text('Unacailable');
               }
-              return Text('Unacailable');
             }),
       ),
       body: SingleChildScrollView(
@@ -97,7 +96,7 @@ class _ChatScreenState extends State<ChatScreen> {
                 width: s.width / 1.1,
                 child:
                     Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                  Container(
+                  SizedBox(
                     height: s.height / 17,
                     width: s.width / 1.3,
                     child: TextField(
@@ -110,7 +109,7 @@ class _ChatScreenState extends State<ChatScreen> {
                   ),
                   IconButton(
                       onPressed: () => onSend(),
-                      icon: Icon(Icons.send_outlined)),
+                      icon: const Icon(Icons.send_outlined)),
                 ]),
               ),
             ),
@@ -129,11 +128,11 @@ class _ChatScreenState extends State<ChatScreen> {
       child: Container(
         decoration: BoxDecoration(
             color: Colors.blue, borderRadius: BorderRadius.circular(15)),
-        padding: EdgeInsets.symmetric(vertical: 10, horizontal: 14),
-        margin: EdgeInsets.symmetric(vertical: 5, horizontal: 8),
+        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 14),
+        margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 8),
         child: Text(
           ds['message'],
-          style: TextStyle(
+          style: const TextStyle(
               color: Colors.white, fontSize: 16, fontWeight: FontWeight.w500),
         ),
       ),

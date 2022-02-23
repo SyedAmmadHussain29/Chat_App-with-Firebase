@@ -9,7 +9,7 @@ Widget customButton(Size s, String txt) {
     width: s.width / 1.2,
     child: Text(
       txt,
-      style: TextStyle(
+      style: const TextStyle(
           fontSize: 18, color: Colors.white, fontWeight: FontWeight.bold),
     ),
   );

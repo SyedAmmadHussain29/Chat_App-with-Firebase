@@ -21,8 +21,8 @@ class _AuthenticateState extends State<Authenticate> {
 Widget auth() {
   FirebaseAuth _auth = FirebaseAuth.instance;
   if (_auth.currentUser != null) {
-    return Home();
+    return const Home();
   } else {
-    return LoginScreen();
+    return const LoginScreen();
   }
 }

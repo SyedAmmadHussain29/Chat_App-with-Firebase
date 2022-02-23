@@ -23,10 +23,10 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       body: isLoading
           ? Center(
-              child: Container(
+              child: SizedBox(
                 height: size.height / 20,
                 width: size.height / 20,
-                child: CircularProgressIndicator(),
+                child: const CircularProgressIndicator(),
               ),
             )
           : SingleChildScrollView(
@@ -39,14 +39,15 @@ class _LoginScreenState extends State<LoginScreen> {
                     alignment: Alignment.centerLeft,
                     width: size.width / 0.5,
                     child: IconButton(
-                        icon: Icon(Icons.arrow_back_ios), onPressed: () {}),
+                        icon: const Icon(Icons.arrow_back_ios),
+                        onPressed: () {}),
                   ),
                   SizedBox(
                     height: size.height / 50,
                   ),
-                  Container(
+                  SizedBox(
                     width: size.width / 1.1,
-                    child: Text(
+                    child: const Text(
                       "Welcome",
                       style: TextStyle(
                         fontSize: 34,
@@ -54,7 +55,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                   ),
-                  Container(
+                  SizedBox(
                     width: size.width / 1.1,
                     child: Text(
                       "Sign In to Contiue!",
@@ -85,16 +86,16 @@ class _LoginScreenState extends State<LoginScreen> {
                     height: size.height / 10,
                   ),
                   GestureDetector(
-                      onTap: () => Navigator.pushReplacement(
-                          context, MaterialPageRoute(builder: (_) => Home())),
+                      onTap: () => Navigator.pushReplacement(context,
+                          MaterialPageRoute(builder: (_) => const Home())),
                       child: customButton(size, 'Login')),
                   SizedBox(
                     height: size.height / 40,
                   ),
                   GestureDetector(
-                    onTap: () => Navigator.of(context)
-                        .push(MaterialPageRoute(builder: (_) => SignUp())),
-                    child: Text(
+                    onTap: () => Navigator.of(context).push(
+                        MaterialPageRoute(builder: (_) => const SignUp())),
+                    child: const Text(
                       "Create Account",
                       style: TextStyle(
                         color: Colors.blue,

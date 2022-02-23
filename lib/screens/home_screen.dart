@@ -2,10 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_chat/methods.dart';
 import 'package:firebase_chat/screens/chat_screen.dart';
-import 'package:firebase_chat/widgets/auth.dart';
-// import 'package:firebase_chat/widgets/auth.dart';
 import 'package:firebase_chat/widgets/custom_feild.dart';
-// import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
@@ -29,7 +26,7 @@ class _HomeState extends State<Home> with WidgetsBindingObserver {
   bool isloading = false;
   final TextEditingController _search = TextEditingController();
   FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
-  FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
 
   void onSearch() async {
     setState(() {
@@ -52,20 +49,20 @@ class _HomeState extends State<Home> with WidgetsBindingObserver {
     final Size s = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Home Screen'),
+        title: const Text('Home Screen'),
         actions: [
           IconButton(
-            icon: Icon(Icons.logout),
+            icon: const Icon(Icons.logout),
             onPressed: () => logOut(),
           )
         ],
       ),
       body: isloading
           ? Center(
-              child: Container(
+              child: SizedBox(
                 height: s.height / 20,
                 width: s.height / 20,
-                child: CircularProgressIndicator(),
+                child: const CircularProgressIndicator(),
               ),
             )
           : Column(
@@ -73,10 +70,10 @@ class _HomeState extends State<Home> with WidgetsBindingObserver {
                 SizedBox(
                   height: s.height / 20,
                 ),
-                Container(
+                SizedBox(
                   width: s.width,
                   height: s.height / 14,
-                  child: Container(
+                  child: SizedBox(
                     height: s.height / 14,
                     width: s.width / 1.15,
                     child: feild(s, 'Search', Icons.search_sharp, _search),
@@ -84,7 +81,7 @@ class _HomeState extends State<Home> with WidgetsBindingObserver {
                 ),
                 SizedBox(height: s.height / 50),
                 ElevatedButton(
-                    onPressed: () => onSearch(), child: Text('Search')),
+                    onPressed: () => onSearch(), child: const Text('Search')),
                 SizedBox(height: s.height / 30),
                 userMap != null
                     ? ListTile(
@@ -101,19 +98,19 @@ class _HomeState extends State<Home> with WidgetsBindingObserver {
                                         userMap: userMap,
                                       )));
                         },
-                        leading: Icon(
+                        leading: const Icon(
                           Icons.account_box_rounded,
                           color: Colors.black,
                         ),
                         title: Text(
                           userMap!['name'] ?? '',
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: Colors.black,
                               fontSize: 17,
                               fontWeight: FontWeight.w500),
                         ),
                         subtitle: Text(userMap!['email'] ?? ''),
-                        trailing: Icon(
+                        trailing: const Icon(
                           Icons.chat,
                           color: Colors.black,
                         ),
@@ -126,7 +123,6 @@ class _HomeState extends State<Home> with WidgetsBindingObserver {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     WidgetsBinding.instance?.addObserver(this);
     setstatus('Online');

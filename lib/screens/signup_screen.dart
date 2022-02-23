@@ -22,11 +22,12 @@ class _SignUpState extends State<SignUp> {
     final Size s = MediaQuery.of(context).size;
     return Scaffold(
         body: _isloading
+            // ignore: dead_code
             ? Center(
-                child: Container(
+                child: SizedBox(
                   height: s.height / 20,
                   width: s.height / 20,
-                  child: CircularProgressIndicator(),
+                  child: const CircularProgressIndicator(),
                 ),
               )
             : SingleChildScrollView(
@@ -38,22 +39,22 @@ class _SignUpState extends State<SignUp> {
                     alignment: Alignment.centerLeft,
                     width: s.width / 1.2,
                     child: IconButton(
-                      icon: Icon(Icons.arrow_back_ios_new_rounded),
+                      icon: const Icon(Icons.arrow_back_ios_new_rounded),
                       onPressed: () {},
                     ),
                   ),
                   SizedBox(height: s.height / 50),
-                  Container(
+                  SizedBox(
                     width: s.width / 1.5,
-                    child: Text(
+                    child: const Text(
                       'Welcome',
                       style:
                           TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
                     ),
                   ),
-                  Container(
+                  SizedBox(
                       width: s.width / 1.3,
-                      child: Text(
+                      child: const Text(
                         'Sign In to continue',
                         style: TextStyle(
                             color: Colors.grey,
@@ -107,9 +108,11 @@ class _SignUpState extends State<SignUp> {
                       },
                       child: customButton(s, 'Create Account')),
                   TextButton(
-                      onPressed: () => Navigator.push(context,
-                          MaterialPageRoute(builder: (_) => LoginScreen())),
-                      child: Text(
+                      onPressed: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (_) => const LoginScreen())),
+                      child: const Text(
                         'Login',
                         style: TextStyle(
                             color: Colors.blue,
